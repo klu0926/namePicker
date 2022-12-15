@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <title>Name Picker</title>
+    <!-- include Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+    <!--container-->
+    <div class="container mt-5 d-flex flex-column align-items-center border border-primary bg-light rounded-lg" style="width: 500px;">
+      
+      <!--title-->
+      <h1 class="display-3 mt-5 text-primary font-weight-bold">Name Picker</h1>
+
+      <!--name input-->
+      <input type="text" class="form-control mb-3" id="name" name="name" style="width: 450px;">
+      
+      <!--submit button -->
+      <button class="btn btn-md btn-primary" id="nameButton" style="width: 450px" >Submit</button>
+      
+      <!--Name Display-->
+      <p class="h4 mt-4 mb-1" id="nameList" style="word-break: break-all">...<p>
+      <p class="h4 mb-2" id="nameCount" style="word-break: break-all; display: none;"><p>
+
+      <!--Pick Winner button-->
+      <button class="btn btn-md btn-warning" id="winnerButton" style="width: 450px" >Pick Winner!</button>
+    
+      <!--Winner Display-->
+      <p class="h4 mt-0 mb-2" id="winner">...<p>
+    
+      <!--Delete data button-->
+      <button class="btn btn-md btn-danger mt-0" id="clearButton" style="width: 150px" >Delete</button>
+
+    
+    </div>
+
+    <!-- include jQuery and Bootstrap JS libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- include custom JavaScript code -->
+    <script>
+
+      // 開始先找看看有沒有存擋
+      let nameButton = document.getElementById('nameButton');
+      let winnerButton = document.getElementById('winnerButton');
+      let clearButton = document.getElementById('clearButton');
+
+
+      nameButton.addEventListener('click', addName)
+      winnerButton.addEventListener('click', pickWinner)
+      clearButton.addEventListener('click', clear)
+
+      let names = [];
+
+
+      //start
+      load()
+      showName()
+      showNameCount()
+
+      function addName() {
+        console.log("addName button")
+        let name = $("#name").val();
+        if (name !== "" && !names.includes(name)){
+
+          names.push(name)
+          $('#name').val('');
+          
+          showName()
+          showNameCount()
+          save(names)
+        }
+      }
+
+      function showName() {
+        if (names.length === 0 ){
+          $('#nameList').text('...')
+        } else {
+          $('#nameList').text(names)
+        }
+     
+      }
+
+      function showNameCount(){
+        if (names.length === 0){
+          $('#nameCount').css("display", "none")
+        } else {
+          $('#nameCount').css("display", "block")
+          $('#nameCount').text(names.length)
+        }
+      }
+
+
+      function pickWinner(){
+        if (names.length === 0){
+          console.log("no one in list")
+          $('#nameList').text("You have 0 name in the list!")
+          return 
+        }
+        let winner = names[Math.floor(Math.random() * names.length)]
+        console.log(winner)
+
+        $('#winner').text(winner)
+      }
+
+
+
+      // 存擋 JSON.stringify(data)
+      function save(list){
+        localStorage.setItem('nameList', JSON.stringify(list));
+      }
+
+      // 讀取 JSON.parse(data)
+      function load(){
+        if (localStorage.getItem('nameList')) {
+          console.log("load : found data")
+          let data = localStorage.getItem('nameList');
+          names = JSON.parse(data)
+          showName()
+          console.log(names)
+        } else {
+          names.length = 0
+        }
+      }
+
+      function clear(){
+        localStorage.removeItem('nameList');
+        names.length = 0; //clear the array
+        $('#winner').text('...')
+        console.log("clear")
+        showName()
+        showNameCount()
+      }
+      
+
+
+
+    </script>
+  </body>
+</html>
