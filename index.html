@@ -1,35 +1,38 @@
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>Name Picker</title>
     <!-- include Bootstrap stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   </head>
   <body>
     <!--container-->
-    <div class="container-fluid mt-5 d-flex flex-column align-items-center text-center ">
+    <div class="container mt-5 d-flex flex-column align-items-center text-center ">
       
       <!--title-->
-      <h1 class="display-3 mt-5 text-primary font-weight-bold">Name Picker</h1>
+      <h1 class="display-3 mt-5 text-primary font-weight-bold d-none d-lg-block">Name Picker</h1>
+      <h1 class="display-1 mt-5 text-primary font-weight-bold d-lg-none d-sm-block ">Name Picker</h1>
 
+     <div class="container col-sm-12 col-lg-6">
       <!--name input-->
-      <input type="text" class="form-control input-lg mb-3" id="name" name="name" style="width:400px">
+      <input type="text" class="form-control input-lg mb-3" id="name" name="name">
       
       <!--submit button -->
-      <button class="btn btn-md btn-primary" id="nameButton" style="width:400px" >Submit</button>
+      <button class="btn btn-md btn-primary" id="nameButton" style="width:100%;" >Submit</button>
       
       <!--Name Display-->
-      <p class="h4 mt-4 mb-1" id="nameList" style="word-break: break-all; width:400px">...<p>
+      <p class="h4 mt-4 mb-1 " id="nameList" style="word-break: break-all;">...<p>
       <p class="h4 mb-2" id="nameCount" style="word-break: break-all; display: none;"><p>
 
       <!--Pick Winner button-->
-      <button class="btn btn-md btn-warning" id="winnerButton"  style="width:400px">Pick Winner!</button>
+      <button class="btn btn-md btn-warning" id="winnerButton" style="width:100%;">Pick Winner!</button>
     
       <!--Winner Display-->
-      <p class="h4 mt-0 mb-2" id="winner"  style="width:400px">...<p>
+      <p class="h4 mt-0 mb-2" id="winner">...<p>
     
       <!--Delete data button-->
-      <button class="btn btn-md btn-danger mt-0" id="clearButton" style="width:400px" >Delete</button>
-
+      <button class="btn btn-md btn-danger mt-0" id="clearButton" style="width:100%;" >Delete</button>
+      </div>
     
     </div>
 
@@ -130,9 +133,7 @@
         showName()
         showNameCount()
       }
-      
-
-
+     
 
     </script>
   </body>
