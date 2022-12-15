@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   </head>
   <body>
-    <!--container-->
+    <!--Outter container-->
     <div class="container mt-5 d-flex flex-column align-items-center text-center ">
       
       <!--title-->
       <h1 class="display-3 mt-5 text-primary font-weight-bold d-none d-lg-block">Name Picker</h1>
       <h1 class="display-1 mt-5 text-primary font-weight-bold d-lg-none d-sm-block ">Name Picker</h1>
 
+    <!--inner container-->
      <div class="container col-sm-12 col-lg-6">
       <!--name input-->
       <input type="text" class="form-control input-lg mb-3" id="name" name="name">
@@ -105,8 +106,6 @@
         $('#winner').text(winner)
       }
 
-
-
       // 存擋 JSON.stringify(data) 需要把Array(object)轉成string
       function save(list){
         localStorage.setItem('nameList', JSON.stringify(list));
@@ -133,8 +132,7 @@
         showName()
         showNameCount()
       }
-     
-
+      
     </script>
   </body>
 </html>
